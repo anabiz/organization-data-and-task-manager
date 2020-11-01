@@ -2,11 +2,12 @@ import { Request, Response, Router } from "express";
 import { createCompany } from "../../../controller/queries";
 import bcrypt from 'bcrypt';
 import jwt from "jsonwebtoken";
-import { updateCompanyVerifyEmailToken } from "../../../controller/queries";
+import { updateCompanyVerifyEmailToken, updateCompanyById } from "../../../controller/queries";
 import { updateCompanyVerificationStatus } from "../../../controller/queries"
 import mailer from "../../../controller/sendEmail"
 import { companySchema } from "../../../schema/validation/company";
 import { companyVerifyEmailBody } from "../../../emailBodyMessages/verifyCompanyEmailBody"
+import { checkCeo } from "../../../middleware/checkCeo";
 
 const router = Router();
 
@@ -77,4 +78,19 @@ router.get("/verifycompanyemail/:id", async function (req: Request, res: Respons
 
 });
 
+router.put("/update/:id", checkCeo, async function (req: Request, res: Response) {
+  const companyId = req.params.id;
+  const data = req.body;
+  console.log(data);
+  try {
+    console.log("i am good to go");
+
+    const staff: any = await updateCompanyById(companyId, data);
+    
+    return res.status(200).json({ staffData: staff, successMessage: "account updated" })
+
+  } catch (error) {
+    return res.status(200).json({ data: "unable to update staff account try again later" });
+  }
+});
 export default router;

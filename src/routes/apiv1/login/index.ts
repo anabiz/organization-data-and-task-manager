@@ -15,7 +15,7 @@ import auth from "../../../middleware/authorization";
     try {
       if (user) {
         console.log(process.env.ACCESS_TOKEN_SECRET)
-        const access_token = jwt.sign(user, `${process.env.ACCESS_TOKEN_SECRET}`, { expiresIn: '2m'});
+        const access_token = jwt.sign(user, `${process.env.ACCESS_TOKEN_SECRET}`, { expiresIn: '10m'});
         const refresh_token = jwt.sign(user, `${process.env.REFRESS_TOKEN_SECRET}`)
         res.cookie("userData", access_token); 
         return res.status(200).json({

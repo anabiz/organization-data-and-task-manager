@@ -13,6 +13,30 @@ export async function createStaff(data: staffType) {
   }
 }
 
+//delete a staff by id
+export async function deleteStaffById(id: string) {
+  try {
+    return sql`DELETE FROM staff WHERE id = ${id}`.then(
+      ([data]) => data,
+    );
+  } catch (error) {
+    console.error(error);
+    return -1;
+  }
+}
+
+//take this update note of this function. Still has some outstanding issues
+export async function updateStaffById(id: string, staffData: staffType) {
+  try {
+    return sql`UPDATE staff ${sql(staffData)} WHERE id = ${id}`.then(
+      ([data]) => data,
+    );
+  } catch (error) {
+    console.error(error);
+    return -1;
+  }
+}
+
 export async function createCompany(data: companyType) {
   try {
     return sql`INSERT INTO company ${sql(data)} RETURNING *`.then(
@@ -20,6 +44,18 @@ export async function createCompany(data: companyType) {
     );
   } catch (error) {
     return error.message;
+  }
+}
+
+//take this update note of this function. Still has some outstanding issues
+export async function updateCompanyById(id: string, companyData: companyType) {
+  try {
+    return sql`UPDATE company ${sql(companyData)} WHERE id = ${id}`.then(
+      ([data]) => data,
+    );
+  } catch (error) {
+    console.error(error);
+    return -1;
   }
 }
 
@@ -46,7 +82,7 @@ export async function getAllStaffByCompanyId(id: string) {
 }
 export async function getStaffById(id: string) {
   try {
-    return sql`SELECT * FROM staff WHERE company_id = ${id}`.then(
+    return sql`SELECT * FROM staff WHERE id = ${id}`.then(
       ([data]) => data,
     );
   } catch (error) {
@@ -66,16 +102,16 @@ export async function getStaffByEmail(email: string) {
   }
 }
 
-export async function updateResetPasswordToken(data: string, id: string) {
-  try {
-    return sql`UPDATE users SET reset_password_token = ${data} WHERE user_id = ${id}`.then(
-      (data) => data,
-    );
-  } catch (error) {
-    console.error(error);
-    return;
-  }
-}
+// export async function updateResetPasswordToken(data: string, id: string) {
+//   try {
+//     return sql`UPDATE users SET reset_password_token = ${data} WHERE user_id = ${id}`.then(
+//       (data) => data,
+//     );
+//   } catch (error) {
+//     console.error(error);
+//     return;
+//   }
+// }
 
 export async function updateCompanyVerifyEmailToken(data: string, id: string) {
   try {

@@ -26,7 +26,7 @@ function initialize(passport: any) {
         try {
             if (await bcrypt.compare(password, user.password!)) {
                 console.log("correct password")
-                return done(null, user)
+                return done(null, user);
             } else {
                 console.log("Incorrect password")
                 return done(null, false, { maessage: "password incorrect" })

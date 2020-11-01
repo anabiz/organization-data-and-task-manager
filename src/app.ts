@@ -4,12 +4,11 @@ import path from "path";
 import cookieParser from "cookie-parser";
 import logger from "morgan";
 import VersionOneRoute from "./routes";
-import passport from "passport"
+import passport from "passport";
 import initializepassport from "./passport-config";
 import flash from "express-flash";
 import session from "express-session";
-require("dotenv").config();  
-
+require("dotenv").config();
 
 initializepassport(passport);
 
@@ -22,11 +21,13 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 app.use(flash());
-app.use(session({
-  secret: "secret",
-  resave: false,
-  saveUninitialized: false
-}));
+app.use(
+  session({
+    secret: "secret",
+    resave: false,
+    saveUninitialized: false,
+  }),
+);
 
 app.use(passport.initialize());
 app.use(passport.session());

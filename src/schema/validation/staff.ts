@@ -1,4 +1,3 @@
-
 import joi from "joi";
 
 export const staffSchema = joi.object({

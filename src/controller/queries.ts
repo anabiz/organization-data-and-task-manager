@@ -1,8 +1,7 @@
 import { sql } from "../stores/pg";
-import { companyType } from "../schema/types/company"
+import { companyType } from "../schema/types/company";
 import { staffType } from "../schema/types/staff";
 import { taskType } from "../schema/types/task";
-
 
 export async function createStaff(data: staffType) {
   try {
@@ -17,9 +16,7 @@ export async function createStaff(data: staffType) {
 //delete a staff by id
 export async function deleteStaffById(id: string) {
   try {
-    return sql`DELETE FROM staff WHERE id = ${id}`.then(
-      ([data]) => data,
-    );
+    return sql`DELETE FROM staff WHERE id = ${id}`.then(([data]) => data);
   } catch (error) {
     console.error(error);
     return -1;
@@ -83,9 +80,7 @@ export async function getAllStaffByCompanyId(id: string) {
 }
 export async function getStaffById(id: string) {
   try {
-    return sql`SELECT * FROM staff WHERE id = ${id}`.then(
-      ([data]) => data,
-    );
+    return sql`SELECT * FROM staff WHERE id = ${id}`.then(([data]) => data);
   } catch (error) {
     console.error(error);
     return -1;
@@ -125,7 +120,10 @@ export async function updateCompanyVerifyEmailToken(data: string, id: string) {
   }
 }
 
-export async function updateCompanyVerificationStatus(data: string, link: string) {
+export async function updateCompanyVerificationStatus(
+  data: string,
+  link: string,
+) {
   try {
     return sql`UPDATE company SET email_verified = ${data} WHERE email_verified_token = ${link}`.then(
       ([data]) => data,
@@ -135,7 +133,6 @@ export async function updateCompanyVerificationStatus(data: string, link: string
     return -1;
   }
 }
-
 
 export async function getAdmin(email: string) {
   try {
@@ -160,9 +157,7 @@ export async function assignTaskById(task: taskType) {
 
 export async function getTaskById(id: string) {
   try {
-    return sql`SELECT * FROM task WHERE staff_id = ${id}`.then(
-      (data) => data,
-    );
+    return sql`SELECT * FROM task WHERE staff_id = ${id}`.then((data) => data);
   } catch (error) {
     console.error(error);
     return -1;

@@ -1,5 +1,5 @@
 import nodemailer from "nodemailer";
-require("dotenv").config();  
+require("dotenv").config();
 
 export default async function invite(
   receiverEmail: string,
@@ -11,7 +11,7 @@ export default async function invite(
   }
   try {
     if (!validateEmail(receiverEmail)) {
-      console.log('validation failed')
+      console.log("validation failed");
       return -1;
     }
     const transporter = nodemailer.createTransport({

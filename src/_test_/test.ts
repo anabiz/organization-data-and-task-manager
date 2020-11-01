@@ -1,6 +1,6 @@
-const supertest = require("supertest");
+import supertest from "supertest";
 const app = require("../app").default;
-const jwt = require("jsonwebtoken");
+//const jwt = require("jsonwebtoken");
 
 const req = supertest(app);
 describe("Test for api endpoint", () => {

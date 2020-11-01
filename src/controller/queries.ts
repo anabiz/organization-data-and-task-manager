@@ -1,6 +1,7 @@
 import { sql } from "../stores/pg";
 import { companyType } from "../schema/types/company"
 import { staffType } from "../schema/types/staff";
+import { taskType } from "../schema/types/task";
 
 
 export async function createStaff(data: staffType) {
@@ -139,6 +140,38 @@ export async function updateCompanyVerificationStatus(data: string, link: string
 export async function getAdmin(email: string) {
   try {
     return sql`SELECT * FROM admin WHERE email = ${email}`.then(
+      ([data]) => data,
+    );
+  } catch (error) {
+    console.error(error);
+    return -1;
+  }
+}
+
+export async function assignTaskById(task: taskType) {
+  try {
+    return sql`INSERT INTO task ${sql(task)} RETURNING *`.then(
+      ([data]) => data,
+    );
+  } catch (error) {
+    return error.message;
+  }
+}
+
+export async function getTaskById(id: string) {
+  try {
+    return sql`SELECT * FROM task WHERE staff_id = ${id}`.then(
+      (data) => data,
+    );
+  } catch (error) {
+    console.error(error);
+    return -1;
+  }
+}
+
+export async function getAllTaskByCompanyId(companyId: string) {
+  try {
+    return sql`SELECT * FROM task WHERE company_id = ${companyId}`.then(
       ([data]) => data,
     );
   } catch (error) {

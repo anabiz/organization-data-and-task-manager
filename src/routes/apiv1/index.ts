@@ -4,6 +4,7 @@ import staffRoutes from "./staff";
 import LoginRoutes from "./login";
 import LogoutRoutes from "./logout";
 import adminRoutes from "./admin";
+import taskRouters from "./task"
 
 const router = Router();
 
@@ -13,6 +14,7 @@ router.use("/staff", staffRoutes);
 router.use("/login", LoginRoutes);
 router.use("/logout", LogoutRoutes);
 router.use("/admin", adminRoutes);
+router.use("/task", taskRouters);
 
 
 export default router;

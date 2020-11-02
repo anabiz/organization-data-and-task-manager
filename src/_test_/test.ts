@@ -11,7 +11,6 @@ describe("Test for api endpoint", () => {
       .send(body)
       .expect(200)
       .end((err: any, res: any) => {
-        console.log(res);
         if (err) done(err);
         expect(res.headers).toHaveProperty("set-cookie");
         done();

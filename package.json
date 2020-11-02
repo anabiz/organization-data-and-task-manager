@@ -7,7 +7,7 @@
     "fix": "eslint --fix '**/*.ts'",
     "lint": "eslint '**/*.ts'",
     "start": "yarn tsc && bin/www",
-    "test": "jest --detectOpenHandles",
+    "test": "jest --forceExit",
     "dev": "tsc --watch & nodemon --ignore bin/www",
     "migrate": "node-pg-migrate"
   },
@@ -65,7 +65,9 @@
     "pretty-quick": "3.0.2",
     "typescript": "^4.0.3"
   },
- 
+  "jest": {
+    "testMatch": ["***/Tests/**/*.js?(x)", "**/?(*.)(spec|test).js?(x)"]
+  },
 
   "husky": {
     "hooks": {

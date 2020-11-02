@@ -8,7 +8,8 @@ import passport from "passport";
 import initializepassport from "./passport-config";
 import flash from "express-flash";
 import session from "express-session";
-require("dotenv").config();
+import dotenv from "dotenv";
+dotenv.config();
 
 initializepassport(passport);
 

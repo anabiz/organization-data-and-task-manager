@@ -51,7 +51,7 @@ router.post("/createaccount", async function (req: Request, res: Response) {
         (await updateCompanyVerifyEmailToken(
           verifyEmailToken,
           newCompany.id,
-        )) == -1
+        )) === -1
       ) {
         //for now do a console log
         console.log("token failed to store");
@@ -62,7 +62,7 @@ router.post("/createaccount", async function (req: Request, res: Response) {
           newCompany.email,
           companyVerifyEmailBody(verifyEmailToken),
         );
-        if (result == -1) {
+        if (result === -1) {
           return res
             .status(500)
             .json({ message: "data stored, but verify email not sent" });

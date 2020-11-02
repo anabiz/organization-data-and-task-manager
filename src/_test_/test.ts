@@ -1,5 +1,5 @@
 import supertest from "supertest";
-const app = require("../app").default;
+import app from "../app";
 //const jwt = require("jsonwebtoken");
 
 const req = supertest(app);

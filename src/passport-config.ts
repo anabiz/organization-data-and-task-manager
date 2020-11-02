@@ -1,9 +1,8 @@
 import { getAdmin, getCompanyByEmail } from "./controller/queries";
 import { getStaffByEmail, getStaffById } from "./controller/queries";
-//import { companyType } from "./schema/types/company"
 import bcrypt from "bcrypt";
 
-const LocalStrategy = require("passport-local").Strategy;
+import { Strategy as LocalStrategy } from "passport-local";
 function initialize(passport: any) {
   const authenticateUser = async (
     email: string,
@@ -15,14 +14,14 @@ function initialize(passport: any) {
     const admin: any = await getAdmin(email);
     const usersArray = [company, staff, admin];
     const user = usersArray.find((user) => {
-      if (user != undefined && user != -1) {
+      if (user !== undefined && user !== -1) {
         return user;
       }
       return null;
     });
 
     console.log("the user", user);
-    if (user == null) {
+    if (user === null) {
       console.log("No such User");
       return done(null, false, { maessage: "No user with that email" });
     }

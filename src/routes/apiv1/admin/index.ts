@@ -5,17 +5,11 @@ const router = Router();
 
 router.get("/", async function (req: Request, res: Response) {
   try {
-  } catch (error) {}
-  const user = await getAdmin(req.params.email);
-  res.status(200).json({ data: user });
-  // res.status(200).json({
-  //   data: {
-  //     result: "hello",
-  //   },
-  //   error: "",
-  //   next: "",
-  //   previous: "",
-  // });
+    const user = await getAdmin(req.params.email);
+    res.status(200).json({ data: user });
+  } catch (error) {
+    res.status(500).json({ message: " error occured " });
+  }
 });
 
 export default router;

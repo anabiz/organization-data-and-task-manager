@@ -6,7 +6,9 @@ const router = Router();
 
 router.post("/", (req, res) => {
   passport.authenticate("local", function (err, user, info): any {
-    if (err !== undefined) {
+    console.log(user);
+    console.log(err);
+    if (err != undefined) {
       return res.status(500).json({ err });
     }
     try {

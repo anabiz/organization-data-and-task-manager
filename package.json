@@ -3,10 +3,11 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
+    "build":"yarn tsc",
     "clean": "npx rimraf ./dist/",
     "fix": "eslint --fix '**/*.ts'",
     "lint": "eslint '**/*.ts'",
-    "start": "yarn tsc && bin/www",
+    "start": "node ./bin/www",
     "test": "jest --forceExit",
     "dev": "tsc --watch & nodemon --ignore bin/www",
     "migrate": "node-pg-migrate"
